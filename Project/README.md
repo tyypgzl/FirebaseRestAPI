@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 # FirebaseRestAPI
-Firebase Rest API 
 =======
-# firebase_rest_velibacik_dersi
+
 
 A new Flutter project.
 
