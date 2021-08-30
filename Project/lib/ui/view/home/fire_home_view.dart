@@ -1,8 +1,7 @@
 import 'package:firebase_rest_api/core/model/student.dart';
 import 'package:firebase_rest_api/core/model/user.dart';
 import 'package:firebase_rest_api/core/services/firebase_servisces.dart';
-import 'package:firebase_rest_api/core/services/google_signin_services.dart';
-import 'package:firebase_rest_api/ui/view/authentication/login_view.dart';
+import 'package:firebase_rest_api/ui/view/authentication/signIn/signin_view.dart';
 import 'package:flutter/material.dart';
 
 class FireHomeView extends StatefulWidget {
@@ -22,10 +21,10 @@ class _FireHomeViewState extends State<FireHomeView> {
         actions: [
           IconButton(
             onPressed: () {
-              GoogleSignHelper.instance.signOut();
+              //  GoogleSignHelper.instance.signOut();
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
+                  MaterialPageRoute(builder: (context) => SignInView()),
                   (route) => false);
             },
             icon: Icon(Icons.exit_to_app),

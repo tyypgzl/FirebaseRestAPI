@@ -1,6 +1,5 @@
-import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleSignHelper {
+/* class GoogleSignHelper {
   static GoogleSignHelper _instance = GoogleSignHelper._private();
   GoogleSignHelper._private();
 
@@ -26,7 +25,7 @@ class GoogleSignHelper {
       if (await _googleSignIn.isSignedIn()) {
         final user = _googleSignIn.currentUser;
         final userData = await user!.authentication;
-        print(userData.accessToken);
+
         return userData;
       }
     } catch (e) {
@@ -43,3 +42,4 @@ class GoogleSignHelper {
     }
   }
 }
+ */
