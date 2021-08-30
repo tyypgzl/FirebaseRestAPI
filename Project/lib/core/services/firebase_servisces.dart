@@ -7,10 +7,12 @@ import 'package:firebase_rest_api/core/model/user/user_request.dart';
 import 'package:http/http.dart' as http;
 
 class FirebaseServices {
-  static const FIREBASE_AUTH_URL =
+  static const FIREBASE_AUTH_URL_SIGNIN =
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRUcrIns1AurUS16RZFCWf79ZdNJ39NMI";
   static const FIREBASE_URL =
       "https://fir-restapi-b1fab-default-rtdb.europe-west1.firebasedatabase.app/";
+  static const FIREBASE_AUTH_URL_SIGNUP =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRUcrIns1AurUS16RZFCWf79ZdNJ39NMI";
   Future<List<User>> getUsers() async {
     final response = await http.get(
       Uri.parse("$FIREBASE_URL/users.json"),
@@ -30,12 +32,11 @@ class FirebaseServices {
     }
   }
 
-  Future postAuthLogin(UserRequest request) async {
-    var jsonModel = json.encode(request.toJson());
-    final response =
-        await http.post(Uri.parse(FIREBASE_AUTH_URL), body: jsonModel);
-
+  Future SignInEmailPassword(UserRequest request) async {
     try {
+      var jsonModel = json.encode(request.toJson());
+      final response =
+          await http.post(Uri.parse(FIREBASE_AUTH_URL_SIGNIN), body: jsonModel);
       if (response.statusCode == HttpStatus.ok) {
         print("Login Succesful..");
         return true;
@@ -83,5 +84,20 @@ class FirebaseServices {
       return studentList;
     }
     return Future.error(response.statusCode);
+  }
+
+  Future SignUpEmailPassword(UserRequest request) async {
+    try {
+      var jsonModel = json.encode(request.toJson());
+      final response =
+          await http.post(Uri.parse(FIREBASE_AUTH_URL_SIGNUP), body: jsonModel);
+      if (response.statusCode == 200) {
+        print("Registration Succesful..");
+      } else {
+        print("Http Status Code Error:${response.statusCode} ");
+      }
+    } catch (e) {
+      print("Kayıt sırasında hata oluştu.Error:$e");
+    }
   }
 }
